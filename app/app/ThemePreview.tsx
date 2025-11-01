@@ -1,6 +1,13 @@
 'use client';
 
 import { Button, Card, Typography } from '../../src/components/generated';
+import Checkbox from '../../src/components/generated/Checkbox';
+import Input from '../../src/components/generated/Input';
+import Label from '../../src/components/generated/Label';
+import Alert, { AlertTitle, AlertDescription } from '../../src/components/generated/Alert';
+import Avatar from '../../src/components/generated/Avatar';
+import Accordion, { AccordionItem } from '../../src/components/generated/Accordion';
+import ButtonGroup from '../../src/components/generated/ButtonGroup';
 import { useTheme } from '../../src/lib/themeContext';
 
 /**
@@ -125,6 +132,68 @@ export default function ThemePreview({ theme: propTheme }: ThemePreviewProps = {
               <Button variant="secondary">Secondary Button</Button>
               <Button variant="outline">Outline Button</Button>
             </div>
+            
+            {/* Button Group */}
+            <div className="space-y-2">
+              <Typography variant="label">Button Group</Typography>
+              <ButtonGroup>
+                <Button variant="outline">Archive</Button>
+                <Button variant="outline">Report</Button>
+                <Button variant="outline">Delete</Button>
+              </ButtonGroup>
+            </div>
+          </div>
+
+          {/* Form Components Showcase */}
+          <div className="space-y-4">
+            <Typography variant="title">Form Components</Typography>
+            
+            {/* Input with Label */}
+            <div className="space-y-2">
+              <Label htmlFor="email-demo" required>Email Address</Label>
+              <Input 
+                id="email-demo" 
+                type="email" 
+                placeholder="you@example.com"
+                size="default" 
+              />
+            </div>
+            
+            {/* Checkbox */}
+            <div className="flex items-center space-x-3">
+              <Checkbox id="terms-demo" />
+              <Label htmlFor="terms-demo">I agree to the terms and conditions</Label>
+            </div>
+          </div>
+
+          {/* Alert Components */}
+          <div className="space-y-4">
+            <Typography variant="title">Alert Components</Typography>
+            
+            <Alert variant="info">
+              <AlertTitle>Information</AlertTitle>
+              <AlertDescription>
+                Your theme tokens are working correctly! All components are automatically styled.
+              </AlertDescription>
+            </Alert>
+            
+            <Alert variant="success">
+              <AlertTitle>Success</AlertTitle>
+              <AlertDescription>
+                Component library generated successfully with your custom theme.
+              </AlertDescription>
+            </Alert>
+          </div>
+
+          {/* Avatar Component */}
+          <div className="space-y-4">
+            <Typography variant="title">Avatar Component</Typography>
+            <div className="flex items-center space-x-4">
+              <Avatar size="sm" fallback="SM" />
+              <Avatar size="md" fallback="MD" />
+              <Avatar size="lg" fallback="LG" status="online" />
+              <Avatar size="xl" fallback="XL" />
+            </div>
           </div>
         </Card>
 
@@ -140,6 +209,25 @@ export default function ThemePreview({ theme: propTheme }: ThemePreviewProps = {
           </Typography>
           <Typography variant="label" color="primary" element="div">Primary Label</Typography>
           <Typography variant="caption" color="muted" element="div">Caption text for additional information</Typography>
+        </Card>
+
+        {/* Accordion Component */}
+        <Card variant="outlined">
+          <Typography variant="title" className="mb-4">Accordion Component</Typography>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item1" trigger="What is a design system?">
+              A design system is a comprehensive guide consisting of reusable components, 
+              guided by clear standards, that can be assembled together to build applications.
+            </AccordionItem>
+            <AccordionItem value="item2" trigger="How do theme tokens work?">
+              Theme tokens are the visual design atoms of the design system. They store 
+              visual design attributes like colors, spacing, typography, and more.
+            </AccordionItem>
+            <AccordionItem value="item3" trigger="Why use Lumina?">
+              Lumina automatically generates component libraries from your design tokens, 
+              ensuring consistency and saving development time.
+            </AccordionItem>
+          </Accordion>
         </Card>
 
         {/* Component Composition Example */}

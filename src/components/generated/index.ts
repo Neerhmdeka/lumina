@@ -1,7 +1,7 @@
 /**
  * @myorg/lumina-components
  * 
- * A dynamically-themed React component library built with Material 3 design principles.
+ * A dynamically-themed React component library built with Material Design principles.
  * Components automatically adapt their styling based on theme tokens provided through
  * React Context, enabling real-time visual updates across your application.
  * 
@@ -71,6 +71,13 @@
  * - **Button**: Interactive buttons with primary/secondary/outline variants
  * - **Card**: Surface containers with elevation and border variants
  * - **Typography**: Complete type scale from display to caption
+ * - **Checkbox**: Accessible checkboxes with custom styling
+ * - **Input**: Form inputs with validation states
+ * - **Label**: Semantic labels for form controls
+ * - **Alert**: Status messages and notifications
+ * - **Avatar**: User profile images with fallbacks
+ * - **Accordion**: Collapsible content sections
+ * - **ButtonGroup**: Grouped button layouts
  * - **ThemeProvider**: Context provider for theme management
  * - **useTheme**: Hook for accessing current theme in custom components
  * 
@@ -87,10 +94,17 @@
  * ```
  */
 
-// Component Exports
+// Generated Components Export
 export { default as Button } from './Button';
 export { default as Card } from './Card';
 export { default as Typography } from './Typography';
+export { default as Checkbox } from './Checkbox';
+export { default as Input } from './Input';
+export { default as Label } from './Label';
+export { default as Alert, AlertTitle, AlertDescription } from './Alert';
+export { default as Avatar } from './Avatar';
+export { default as Accordion, AccordionItem } from './Accordion';
+export { default as ButtonGroup } from './ButtonGroup';
 
 // Theme System Exports
 export { ThemeProvider, useTheme, defaultThemeTokens, validateThemeTokens } from './ThemeProvider';
@@ -120,3 +134,10 @@ export const setGlobalTheme = (theme: any) => {
 export type { ButtonProps } from './Button';
 export type { CardProps } from './Card';
 export type { TypographyProps } from './Typography';
+export type { CheckboxProps } from './Checkbox';
+export type { InputProps } from './Input';
+export type { LabelProps } from './Label';
+export type { AlertProps, AlertTitleProps, AlertDescriptionProps } from './Alert';
+export type { AvatarProps } from './Avatar';
+export type { AccordionProps, AccordionItemProps } from './Accordion';
+export type { ButtonGroupProps } from './ButtonGroup';

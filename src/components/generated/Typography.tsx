@@ -1,7 +1,7 @@
 'use client';
 
-import { ReactNode } from 'react';
-import { useTheme } from './ThemeProvider';
+import { ReactNode, ElementType } from 'react';
+import { useTheme } from '../../lib/themeContext';
 
 /**
  * Generated Typography Component
@@ -165,15 +165,32 @@ export default function Typography({
   /**
    * Theme Integration via Context
    * 
-   * Typography component uses useTheme hook for automatic theme updates.
-   * Enables real-time font family, color, and sizing changes.
+   * Typography now uses the useTheme hook for automatic theme updates.
    */
-  const { theme } = useTheme();
+  const { fullTheme } = useTheme();
 
-  // Theme should never be null due to defaultThemeTokens fallback in context
-  if (!theme) {
-    throw new Error('Theme context not available. Ensure Typography is wrapped in ThemeProvider.');
-  }
+  // Default theme tokens for fallback
+  const defaultThemeTokens = {
+    colors: {
+      primary: '#2563eb',
+      secondary: '#64748b', 
+      tertiary: '#0f172a',
+      onPrimary: '#ffffff',
+      onSecondary: '#ffffff',
+    },
+    typography: {
+      fontFamily: 'Inter, system-ui, sans-serif',
+    },
+    shape: {
+      cornerRadius: 6,
+    },
+    spacing: {
+      base: 16,
+    },
+  };
+  
+  // Use theme tokens from the fullTheme object or fallback to default
+  const theme = fullTheme?.tokens || defaultThemeTokens;
 
   // Material 3 type scale - responsive and hierarchical
   const getVariantStyles = () => {
