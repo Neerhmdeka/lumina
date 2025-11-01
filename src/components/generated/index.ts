@@ -106,38 +106,5 @@ export { default as Avatar } from './Avatar';
 export { default as Accordion, AccordionItem } from './Accordion';
 export { default as ButtonGroup } from './ButtonGroup';
 
-// Theme System Exports
-export { ThemeProvider, useTheme, defaultThemeTokens, validateThemeTokens } from './ThemeProvider';
-export type { ThemeTokens, Theme } from './ThemeProvider';
-
-// Legacy theme functions for backward compatibility
-import { setButtonTheme } from './Button';
-import { setCardTheme } from './Card';
-import { setTypographyTheme } from './Typography';
-
-/**
- * Legacy Global Theme Setter
- * 
- * @deprecated Use ThemeProvider and useTheme hook instead for better performance and React patterns
- * 
- * Updates all component themes at once with new token values.
- * This function is kept for backward compatibility but it's recommended
- * to migrate to the ThemeProvider approach for better React integration.
- */
-export const setGlobalTheme = (theme: any) => {
-  setButtonTheme(theme);
-  setCardTheme(theme);
-  setTypographyTheme(theme);
-};
-
-// Type Exports for better TypeScript support
-export type { ButtonProps } from './Button';
-export type { CardProps } from './Card';
-export type { TypographyProps } from './Typography';
-export type { CheckboxProps } from './Checkbox';
-export type { InputProps } from './Input';
-export type { LabelProps } from './Label';
-export type { AlertProps, AlertTitleProps, AlertDescriptionProps } from './Alert';
-export type { AvatarProps } from './Avatar';
-export type { AccordionProps, AccordionItemProps } from './Accordion';
-export type { ButtonGroupProps } from './ButtonGroup';
+// Note: Components now use main app's theme context from '../../lib/themeContext'
+// No separate ThemeProvider export needed

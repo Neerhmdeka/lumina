@@ -23,6 +23,39 @@ model User {
   
   // Themes created by this user
   themes             Theme[]
+  
+  // Component libraries owned by this user
+  componentLibraries ComponentLibrary[]
+  
+  // User preferences
+  preferences        UserPreferences?
+}
+
+model UserPreferences {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  
+  // Default components to generate for new themes
+  defaultComponents     String[] @default(["Button", "Card", "Typography", "Checkbox", "Input", "Label", "Alert", "Avatar", "Accordion", "ButtonGroup"])
+  
+  // Auto-generation settings
+  autoGenerateOnThemeCreate Boolean @default(true)
+  autoGenerateOnThemeUpdate Boolean @default(true)
+  
+  // NPM package settings
+  defaultPackageName    String?  // Default NPM package name pattern
+  autoPublishToNPM      Boolean  @default(false)
+  
+  // Notification settings
+  emailOnGeneration     Boolean  @default(true)
+  slackWebhookUrl       String?  // Optional Slack webhook for notifications
+  
+  // Timestamps
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  // Relations
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Organization {
@@ -36,6 +69,9 @@ model Organization {
   
   // Themes associated with this organization
   themes    Theme[]
+  
+  // Component libraries associated with this organization
+  componentLibraries ComponentLibrary[]
 }
 
 model Theme {
@@ -50,4 +86,36 @@ model Theme {
   // Relations
   organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Component libraries generated from this theme
+  componentLibraries ComponentLibrary[]
+}
+
+model ComponentLibrary {
+  id             String       @id @default(cuid())
+  name           String       @default("Generated Components")
+  description    String?      // Optional description
+  version        String       @default("1.0.0")
+  themeId        String       // The theme this library was generated from
+  userId         String       // The user who owns this library
+  organizationId String?      // Optional: Associate with organization
+  
+  // Generation settings
+  components     String[]     // Array of component names that were generated (e.g., ["Button", "Card", "Input"])
+  packageName    String?      // NPM package name if published
+  isPublic       Boolean      @default(false) // Whether this library is publicly accessible
+  
+  // File storage
+  zipFileUrl     String?      // URL to downloadable zip file of the component library
+  npmPackageUrl  String?      // URL to published NPM package
+  
+  // Metadata
+  generatedAt    DateTime     @default(now())
+  lastUpdated    DateTime     @updatedAt
+  downloadCount  Int          @default(0) // Track how many times it's been downloaded
+  
+  // Relations
+  theme          Theme        @relation(fields: [themeId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
