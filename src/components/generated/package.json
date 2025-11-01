@@ -50,6 +50,7 @@
     "clsx": "^2.0.0"
   },
   "devDependencies": {
+    "@ljharb/tsconfig": "^0.3.2",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-typescript": "^11.0.0",

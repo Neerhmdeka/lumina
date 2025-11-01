@@ -1,0 +1,13 @@
+{
+  "typescript.preferences.exclude": [
+    "**/node_modules",
+    "**/node_modules/**",
+    "src/components/generated/node_modules/**"
+  ],
+  "typescript.validate.enable": true,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "files.exclude": {
+    "**/node_modules/**": true,
+    "src/components/generated/node_modules/**": true
+  }
+}
