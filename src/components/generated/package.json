@@ -1,0 +1,79 @@
+{
+  "name": "@myorg/lumina-components",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A dynamically-generated design system based on user-defined theme tokens. Material 3 inspired components that automatically adapt to your brand.",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "test": "jest",
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "components",
+    "material-design",
+    "theme-tokens",
+    "lumina",
+    "ui-library",
+    "typescript",
+    "material3",
+    "design-tokens"
+  ],
+  "author": "Lumina Design System",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lumina/lumina-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lumina/lumina-components/issues"
+  },
+  "homepage": "https://lumina-components.dev",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dependencies": {
+    "clsx": "^2.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.0.0",
+    "rollup": "^4.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  }
+}
