@@ -1,7 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { UserButton } from "@clerk/nextjs";
 import DashboardContent from "./DashboardContent";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../src/lib/prisma";
 import { ThemeProvider } from "../../src/lib/themeContext";
 
 /**
@@ -23,7 +23,7 @@ export default async function Dashboard() {
   const user = await currentUser();
 
   // Fetch the current organization's theme from database
-  let currentTheme = null;
+  let currentTheme: any = null;
   if (user) {
     try {
       // Find the user in our database
@@ -45,7 +45,12 @@ export default async function Dashboard() {
 
       // Get the theme from the user's organization
       if (dbUser?.ownedOrganizations?.[0]?.themes?.[0]) {
-        currentTheme = dbUser.ownedOrganizations[0].themes[0];
+        const rawTheme = dbUser.ownedOrganizations[0].themes[0];
+        // Convert database theme to proper Theme type
+        currentTheme = {
+          ...rawTheme,
+          tokens: rawTheme.tokens as any // Cast JsonValue to ThemeTokens
+        };
       }
     } catch (error) {
       console.error('Error fetching theme:', error);
